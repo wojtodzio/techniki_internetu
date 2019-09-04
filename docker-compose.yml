@@ -15,7 +15,7 @@ services:
     links:
       - mysql
     volumes:
-      - ./docker/www:/var/www/html
+      - ./laravel:/var/www/laravel
       - ./docker/config/php/php.ini:/usr/local/etc/php/php.ini
       - ./docker/config/vhosts:/etc/apache2/sites-enabled
       - ./docker/logs/apache2:/var/log/apache2
