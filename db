@@ -1,0 +1,5 @@
+#!/bin/bash
+
+export $(cat .env | xargs)
+
+docker exec -it mysql-db bash -c "mysql -u $MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE"

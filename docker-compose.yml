@@ -1,0 +1,51 @@
+version: "3"
+
+services:
+  webserver:
+    build:
+      context: ./docker/bin/webserver
+    container_name: 'webserver'
+    restart: 'always'
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - mysql
+    volumes:
+      - ./docker/www:/var/www/html
+      - ./docker/config/php/php.ini:/usr/local/etc/php/php.ini
+      - ./docker/config/vhosts:/etc/apache2/sites-enabled
+      - ./docker/logs/apache2:/var/log/apache2
+  mysql:
+    build:
+      context: ./docker/bin/mysql
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci','--default-authentication-plugin=mysql_native_password']
+    container_name: 'mysql-db'
+    restart: 'always'
+    ports:
+      - 3306:3306
+    volumes:
+      - ./docker/data/mysql:/var/lib/mysql
+      - ./docker/logs/mysql:/var/log/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: 'sc-phpmyadmin'
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: ${MYSQL_USER}
+      PMA_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - 8080:80
+    volumes:
+      - /sessions
