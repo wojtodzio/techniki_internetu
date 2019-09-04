@@ -55,3 +55,4 @@ RUN rm -rf /usr/src/*
 RUN useradd -G www-data,root -u 1000 -d /home/devuser devuser
 RUN mkdir -p /home/devuser/.composer && \
     chown -R devuser:devuser /home/devuser
+RUN sudo -u devuser /bin/bash -c "composer global require laravel/installer"

@@ -10,12 +10,12 @@ services:
       - 80:80
       - 443:443
     environment:
-      - APACHE_RUN_USER=#1000
-      - APACHE_RUN_GROUP=#1000
+      APACHE_RUN_USER: "#1000"
+      APACHE_RUN_GROUP: "#1000"
     links:
       - mysql
     volumes:
-      - ./laravel:/var/www/laravel
+      - ./laravel:/var/www/html
       - ./docker/config/php/php.ini:/usr/local/etc/php/php.ini
       - ./docker/config/vhosts:/etc/apache2/sites-enabled
       - ./docker/logs/apache2:/var/log/apache2
