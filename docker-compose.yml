@@ -9,6 +9,9 @@ services:
     ports:
       - 80:80
       - 443:443
+    environment:
+      - APACHE_RUN_USER=#1000
+      - APACHE_RUN_GROUP=#1000
     links:
       - mysql
     volumes:

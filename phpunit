@@ -3,4 +3,4 @@
 args="$@"
 command="vendor/bin/phpunit $args"
 echo "$command"
-docker exec -it webserver bash -c "$command"
+docker exec -it webserver bash -c "sudo -u devuser /bin/bash -c \"$command\""
