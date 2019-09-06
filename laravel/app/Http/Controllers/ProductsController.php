@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class ProductsController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,12 +17,13 @@ class ProfileController extends Controller
     }
 
     /**
-     * Show current user's profile.
+     * Show the products list.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function show()
+    public function index()
     {
-        return view('profile');
+        $products = \App\Product::all();
+        return view('products', compact('products'));
     }
 }

@@ -11,11 +11,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        foreach (['Volleyball', 'Skiing', 'Computer Science', 'Being PW student', 'Finishing PW ASAP'] as $interest)
-        {
-            DB::table('interests')->insert([
-                'name' => $interest
-            ]);
-        }
+        $this->call([
+            InterestsTableSeeder::class,
+            ProductsTableSeeder::class,
+        ]);
     }
 }
