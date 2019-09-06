@@ -69,7 +69,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $interests = \App\Interest::findMany($data['interests']);
+        $user = User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],
             'login' => $data['login'],
@@ -80,5 +81,9 @@ class RegisterController extends Controller
             'education' => $data['education'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $user->interests()->attach($interests);
+
+        return $user;
     }
 }
