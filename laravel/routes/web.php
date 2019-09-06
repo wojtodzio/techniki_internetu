@@ -20,3 +20,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'ProfileController@show')->name('profile');
 Route::get('/products', 'ProductsController@index')->name('products');
+Route::resource('/cart_items', 'CartItemsController');
