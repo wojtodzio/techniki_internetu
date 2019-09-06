@@ -27,7 +27,7 @@ class AddColumnsToUsers extends Migration
             $table->enum('education', ['higher', 'middle', 'basic']);
         });
 
-        Schema::create('user_interest', function (Blueprint $table) {
+        Schema::create('interest_user', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
@@ -43,7 +43,7 @@ class AddColumnsToUsers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_interest');
+        Schema::dropIfExists('interest_user');
         Schema::dropIfExists('interests');
 
         Schema::table('users', function (Blueprint $table) {
