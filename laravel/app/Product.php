@@ -8,7 +8,7 @@ class Product extends Model
 {
     public function users()
     {
-        return $this->belongsToMany(User::class)->using(CartItem::class);
+        return $this->belongsToMany(User::class, 'cart_item')->using(CartItem::class);
     }
 
     protected $fillable = [

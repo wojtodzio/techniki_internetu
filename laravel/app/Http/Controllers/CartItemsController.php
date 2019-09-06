@@ -13,7 +13,11 @@ class CartItemsController extends Controller
      */
     public function index()
     {
-        //
+        $cartItems = \App\CartItem::where(['user_id' => auth()->user()->id])->with('Product')->get();
+        $totalPrice = $cartItems->sum(function($cartItem) {
+            return $cartItem->totalPrice();
+        });
+        return view('cart_items.index', compact('cartItems', 'totalPrice'));
     }
 
     /**
@@ -34,18 +38,6 @@ class CartItemsController extends Controller
     }
 
     /**
-     * Update the specified cart items quantity.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified item from the cart.
      *
      * @param  int  $id
@@ -53,6 +45,8 @@ class CartItemsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \App\CartItem::where('user_id', auth()->user()->id)->where('id', $id)->delete();
+
+        return redirect('/cart_items')->with('success', 'Product was removed from your cart!');
     }
 }

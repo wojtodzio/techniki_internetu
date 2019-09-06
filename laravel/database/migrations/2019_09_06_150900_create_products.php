@@ -20,7 +20,7 @@ class CreateProducts extends Migration
             $table->timestamps();
         });
 
-        Schema::create('cart_items', function (Blueprint $table) {
+        Schema::create('cart_item', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('quantity');
             $table->bigInteger('user_id')->unsigned();
@@ -38,7 +38,7 @@ class CreateProducts extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cart_items');
+        Schema::dropIfExists('cart_item');
         Schema::dropIfExists('products');
     }
 }

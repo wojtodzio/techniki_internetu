@@ -12,6 +12,9 @@
 */
 
 Route::get('/', function () {
+    if(Auth::check()) {
+        return redirect()->route('cart_items.index');
+    }
     return view('welcome');
 });
 

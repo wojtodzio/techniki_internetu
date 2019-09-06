@@ -27,9 +27,6 @@
                         </thead>
                         <tbody>
                             @foreach($products AS $index => $product)
-                                <form action="{{ route('cart_items.store', ['itemID' => $product->id]) }}" method="post" id="product-form-{{ $product->id }}">
-                                    @csrf
-                                </form>
                                 <tr>
                                     <th scope="row">{{ $index + 1 }}</td>
                                     <td>{{ $product->name }}</td>

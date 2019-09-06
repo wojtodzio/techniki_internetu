@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -17,7 +18,19 @@ class User extends Authenticatable
 
     public function products()
     {
-        return $this->belongsToMany(Product::class)->using(CartItem::class);
+        return $this->belongsToMany(Product::class, 'cart_item')->using(CartItem::class);
+    }
+
+    public function productsCount()
+    {
+        return $this->products()->count();
+    }
+
+    public function productsCountString() {
+        $productsCount = $this->productsCount();
+        $productsString = Str::plural('product', $productsCount);
+
+        return $productsCount." ".$productsString;
     }
 
     /**
