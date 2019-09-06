@@ -96,6 +96,24 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="education" class="col-md-4 col-form-label text-md-right">{{ __('Education') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="form-control" name="education">
+                                    @foreach(['higher', 'middle', 'basic'] AS $educationLevel)
+                                        <option value="{{ $educationLevel }}" {{ old("education") == $educationLevel ? "selected" : "" }}>{{ $educationLevel }}</option>
+                                    @endforeach
+                                </select>
+
+                                @error('education')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
