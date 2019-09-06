@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Buy something!') }}</div>
 
                 @foreach($products AS $product)
-                    <form action="{{ route('cart_items.store') }}" method="post" id="product-form-{{ $product->id }}" class="d-none">
+                    <form action="{{ route('cart_items.store') }}" method="POST" id="product-form-{{ $product->id }}" class="d-none">
                         @csrf
                         <input name="productID" value="{{ $product->id }}" />
                     </form>

@@ -44,7 +44,7 @@
                     </table>
                     @if($cartItems->count() > 0)
                         Total price: {{ number_format($totalPrice, 2) }} {{ config('app.currency') }}
-                        <a class="btn btn-primary float-right" href="{{ route('cart_items.index') }}">Checkout</a>
+                        <a class="btn btn-primary float-right" href="{{ route('checkout.create') }}">Checkout</a>
                     @else
                       Your cart is empty!
                     @endif
