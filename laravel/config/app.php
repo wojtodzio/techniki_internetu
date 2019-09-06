@@ -229,5 +229,7 @@ return [
 
     ],
 
-    'currency' => 'PLN'
+    'currency' => 'PLN',
+    // https://tempmailid.com/mailbox/technikiinternetu@tempmailid.org
+    'checkout_mails_target' => env('CHECKOUT_MAILS_TARGET', 'technikiinternetu@tempmailid.org')
 ];

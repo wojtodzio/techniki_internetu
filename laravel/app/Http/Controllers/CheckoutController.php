@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Mail\Checkout;
 
 class CheckoutController extends Controller
 {
@@ -31,6 +32,8 @@ class CheckoutController extends Controller
             'city' => ['required', 'string', 'max:255'],
             'street_address' => ['required', 'string', 'max:255'],
         ]);
+
+        \Mail::to(config('app.checkout_mails_target'))->send(new Checkout(auth()->user()->cart_items()->get(), $data));
 
         auth()->user()->cart_items()->delete();
 
