@@ -10,6 +10,11 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public function interests()
+    {
+        return $this->belongsToMany(Interest::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *

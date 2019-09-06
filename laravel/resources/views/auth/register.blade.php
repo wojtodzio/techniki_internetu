@@ -113,6 +113,25 @@
                             </div>
                         </div>
 
+
+                        <div class="form-group row">
+                            <label for="interests" class="col-md-4 col-form-label text-md-right">{{ __('Interests') }}</label>
+
+                            <div class="col-md-6">
+                                <select mulitple="multiple" class="form-control" name="interests[]">
+                                    @foreach(\App\Interest::all() AS $interest)
+                                        <option value="{{ $interest->id }}" {{ old("interests") && in_array($interest->id, old("interests")) ? "selected" : "" }}>{{ $interest->name }}</option>
+                                    @endforeach
+                                </select>
+
+                                @error('interests')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
