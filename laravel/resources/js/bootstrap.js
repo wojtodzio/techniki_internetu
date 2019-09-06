@@ -53,3 +53,11 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+require('select2');
+
+$(function() {
+    $('select').select2({
+        theme: 'bootstrap4',
+    });
+});
