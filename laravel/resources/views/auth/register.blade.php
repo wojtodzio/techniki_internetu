@@ -99,7 +99,7 @@
                             <label for="education" class="col-md-4 col-form-label text-md-right">{{ __('Education') }}</label>
 
                             <div class="col-md-6">
-                                <select class="form-control" name="education">
+                                <select class="form-control @error('education') is-invalid @enderror" name="education">
                                     @foreach(['higher', 'middle', 'basic'] AS $educationLevel)
                                         <option value="{{ $educationLevel }}" {{ old("education") == $educationLevel ? "selected" : "" }}>{{ $educationLevel }}</option>
                                     @endforeach
@@ -118,7 +118,7 @@
                             <label for="interests" class="col-md-4 col-form-label text-md-right">{{ __('Interests') }}</label>
 
                             <div class="col-md-6">
-                                <select mulitple="multiple" class="form-control" name="interests[]">
+                                <select multiple="multiple" class="form-control @error('interests') is-invalid @enderror" name="interests[]">
                                     @foreach(\App\Interest::all() AS $interest)
                                         <option value="{{ $interest->id }}" {{ old("interests") && in_array($interest->id, old("interests")) ? "selected" : "" }}>{{ $interest->name }}</option>
                                     @endforeach
