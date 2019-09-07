@@ -25,3 +25,6 @@ Route::get('/profile', 'ProfileController@show')->name('profile');
 Route::get('/products', 'ProductsController@index')->name('products');
 Route::resource('/cart_items', 'CartItemsController');
 Route::resource('/checkout', 'CheckoutController');
+Route::get('/admin', 'AdminController@index')->name('admin');
+Route::resource('/admin/products', 'Admin\ProductsController');
+Route::resource('/admin/users', 'Admin\UsersController');

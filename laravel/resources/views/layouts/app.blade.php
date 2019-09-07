@@ -85,6 +85,13 @@
                             @endif
                         @else
                             <ul class="nav-item">
+                                @if (auth()->user()->admin)
+                                    <a class="nav-link" href="{{ route('admin') }}">
+                                        {{ __('Admin panel') }}
+                                    </a>
+                                @endif
+                            </ul>
+                            <ul class="nav-item">
                                 <a class="nav-link" href="{{ route('cart_items.index') }}">
                                     {{ __('Your cart') }} ({{ auth()->user()->productsCountString() }})
                                 </a>
